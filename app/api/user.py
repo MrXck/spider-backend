@@ -4,7 +4,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.common.R import R
 from app.core.db import get_db
-from app.core.security import RequireLogin, get_current_user
+from app.core.security import RequireLogin
 from app.models.user import User
 from app.schemas.user import UserRead, UserCreate, UserLogin
 from app.utils import md5
@@ -31,9 +31,8 @@ async def login(
 
 
 @router.get("/{user_id}", dependencies=[RequireLogin],)
-async def get_by_user_id(user_id: int, user_info: dict = Depends(get_current_user), db: AsyncSession = Depends(get_db)):
+async def get_by_user_id(user_id: int, db: AsyncSession = Depends(get_db)):
     user = await db.get(User, user_id)
-    print(user_info)
     if user is None:
         return R.error(USERNAME_OR_PASSWORD_ERROR)
     user_read = UserRead.model_validate(user)
