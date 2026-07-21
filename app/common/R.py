@@ -5,19 +5,19 @@ from app.utils.constant import REQUEST_SUCCESS
 
 class R:
     @classmethod
-    def success(cls, data, msg=REQUEST_SUCCESS, code=200, status=200):
+    def success(cls, data, msg=REQUEST_SUCCESS, code=0, status=200):
         return {
-            'status': code,
-            'result': data,
-            'message': msg,
+            'code': code,
+            'data': data,
+            'msg': msg,
             'timestamp': int(time.time() * 1000)
         }
 
     @classmethod
-    def error(cls, msg, code=400, status=200):
+    def error(cls, msg, code=1, status=200):
         return {
-            'status': code,
-            'result': {},
-            'message': msg,
+            'code': code,
+            'data': {},
+            'msg': msg,
             'timestamp': int(time.time() * 1000)
         }
