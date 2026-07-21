@@ -1,0 +1,20 @@
+from fastapi import HTTPException, status, Depends, Request, Response
+
+from app.utils.jwt_utils import parse_payload, create_token
+
+
+def get_current_user(request: Request, response: Response):
+    token = request.headers.get("Authorization")
+    if not token:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="缺少或无效的 Authorization Header"
+        )
+    user_id = parse_payload(token)['data']['data']
+    response.headers["Authorization"] = create_token(user_id)
+    return {
+        'user_id': user_id
+    }
+
+
+RequireLogin = Depends(get_current_user)
