@@ -1,0 +1,104 @@
+# ======================
+# Python 通用
+# ======================
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+pip-wheel-metadata/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+
+# ======================
+# 虚拟环境（极其重要）
+# ======================
+venv/
+env/
+.venv/
+ENV/
+env.bak/
+venv.bak/
+
+
+# ======================
+# IDE & 编辑器
+# ======================
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+
+# ======================
+# FastAPI / Web 运行时产物
+# ======================
+*.log
+*.sqlite3
+*.db
+uvicorn.log
+logs/
+static/__pycache__/
+
+
+# ======================
+# 环境变量 & 密钥（千万别提交）
+# =====================_
+.env
+.env.*
+!.env.example
+
+
+# ======================
+# Jupyter Notebooks（如果用 fastapi + nb 调试）
+# =====================_
+.ipynb_checkpoints
+
+
+# ======================
+# pytest & coverage
+# =====================_
+.coverage
+htmlcov/
+.pytest_cache/
+tests/__pycache__/
+
+
+# ======================
+# mypy & 类型检查
+# =====================_
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+
+# ======================
+# Alembic / SQLAlchemy 迁移（按需保留）
+# =====================_
+# 通常迁移脚本本身要提交，但别提交数据库版本锁以外的垃圾
+alembic/versions/.keep
+
+
+# ======================
+# macOS 系统文件
+# =====================_
+.DS_Store
+.AppleDouble
+.LSOverride
