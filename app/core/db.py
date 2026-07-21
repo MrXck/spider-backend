@@ -6,7 +6,7 @@ from sqlalchemy.ext.asyncio import (
 from sqlalchemy.orm import DeclarativeBase
 
 # MySQL + asyncmy
-DATABASE_URL = "mysql+asyncmy://root:123@localhost:3306/todolist?charset=utf8mb4"
+DATABASE_URL = "mysql+asyncmy://root:123@localhost:3306/spider?charset=utf8mb4"
 
 engine = create_async_engine(
     DATABASE_URL,

@@ -1,24 +1,18 @@
-from fastapi import FastAPI, Depends
-from sqlalchemy.ext.asyncio import AsyncSession
+from fastapi import FastAPI
 
+from app.api import user
 from app.common.R import R
-from app.core.db import get_db
-import app.models.user
 
-fast = FastAPI()
+app = FastAPI()
+app.include_router(
+    user.router,
+    prefix="/user",
+    tags=["user"],
+    # dependencies=[Depends(get_token_header)],
+    responses={404: {"description": "Not found"}}
+)
 
 
-@fast.get("/")
+@app.get("/")
 def root():
     return R.success({"msg": "FastAPI running on Windows!"})
-
-
-@fast.post("/test/")
-async def create_workflow(
-        db: AsyncSession = Depends(get_db),
-):
-    wf = app.models.user.User(username='666')
-    db.add(wf)
-    await db.flush()
-    await db.refresh(wf)
-    return R.success({"id": wf.id})
