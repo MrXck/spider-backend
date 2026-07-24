@@ -111,7 +111,12 @@ async def get_by_page(
     size = flow_chart.page_size
     page = flow_chart.page_num
 
-    where = (select(FlowChart)
-             .where(FlowChart.user_id == user_info.get('user_id'), FlowChart.name.like(f"%{flow_chart.name}%")))
+    where = (
+        select(FlowChart)
+        .where(
+            FlowChart.user_id == user_info.get('user_id'),
+            FlowChart.name.like(f"%{flow_chart.name}%")
+        )
+    )
 
     return R.success(await get_page_info(where, page, size, db, FlowChartRead))
