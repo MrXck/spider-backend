@@ -37,6 +37,7 @@ class UserBase(BaseModel):
 
 
 class UserRead(BaseModel):
+    id: int = Field(alias='id')
     username: str = Field(min_length=1, max_length=50)
     # password: str = Field(min_length=1, max_length=50)
     email: Optional[EmailStr] = Field()

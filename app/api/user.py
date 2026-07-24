@@ -24,7 +24,7 @@ async def login(
                            User.password == md5.md5hex(user.password)))).scalars().first()
     if login_user:
         return R.success({
-            'user': UserRead.model_validate(login_user).model_dump(),
+            'user': UserRead.model_validate(login_user).model_dump(by_alias=True),
             'token': create_token(login_user.id)
         })
     return R.error(USERNAME_OR_PASSWORD_ERROR)
@@ -35,7 +35,7 @@ async def get_by_user_id(user_id: int, db: AsyncSession = Depends(get_db)):
     user = await db.get(User, user_id)
     if user is None:
         return R.error(USERNAME_OR_PASSWORD_ERROR)
-    user_read = UserRead.model_validate(user)
+    user_read = UserRead.model_validate(user).model_dump(by_alias=True)
     return R.success({"user": user_read})
 
 
